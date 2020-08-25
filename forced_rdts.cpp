@@ -18,10 +18,10 @@ gen get_line(const gen& h, const gen& nx, const gen& ny, const gen& coords, cons
 
     gen result;
 
-    for (int j = 0; j < max_; j++)
-        for (int k = 0; k < max_; k++)
-            for (int l = 0; l < max_; l++)
-                for (int m = 0; m < max_; m++)
+    for (int j = 0; j <= max_; j++)
+        for (int k = 0; k <= max_; k++)
+            for (int l = 0; l <= max_; l++)
+                for (int m = 0; m <= max_; m++)
                     if (j - k == nx.to_int() && l - m == ny.to_int()) {
                         //logger->info("get_line", "%d %d %d %d", j, k, l ,m);
                         auto nz_coeff = _coeff(makesequence(h, coordinates[0], j), ct);
