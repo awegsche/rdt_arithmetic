@@ -1,0 +1,31 @@
+main_coords:=[hxp,hxm,hyp,hym];
+free_coords:=[zxp,zxm,zyp,zym];
+ac_coords:=[gxp,gxm,gyp,gym];
+forced_hg:=[main_coords,ac_coords];
+F_full_3 := make_full_F(4, [zxp, zxm, zyp, zym]);
+F_coupl := f1010*hxp*hyp + f0101*hxm*hym + f1001*hxp*hym + f0110*hxm*hyp;
+h := h_from_z(F_full_3, zxp, 1, [free_coords]);
+line10_free:=get_line(h, 1, 0, free_coords, 4);
+line01_free:=get_line(h, 0, 1, free_coords, 4);
+line02_free:=get_line(h, 0, 2, free_coords, 4);
+line20_free:=get_line(h, 2, 0, free_coords, 4);
+linem20_free:=get_line(h,-2,0,free_coords,4);
+line12_free:=get_line(h, 1, 2, free_coords, 4);
+line21_free:=get_line(h, 2, 1, free_coords, 4);
+line30_free:=get_line(h, 3, 0, free_coords, 4);
+line03_free:=get_line(h, 0, 3, free_coords, 4);
+zxp := hxp+gxp*exp(i*pi*Qxm)+lambda*gxm*exp(i*pi*Qxp);
+zxm := hxm+gxm*exp(-i*pi*Qxm)+lambda*gxp*exp(-i*pi*Qxp);
+zyp := hyp+gyp*exp(i*pi*Qym)+lambda*gym*exp(i*pi*Qyp);
+zym := hym+gym*exp(-i*pi*Qym)+lambda*gyp*exp(-i*pi*Qyp);
+h := h_from_z(F_full_3, zxp, 1, forced_hg);
+line10:=get_line(h, 1, 0, main_coords, 4);
+line01:=get_line(h, 0, 1, main_coords, 4);
+line02:=get_line(h, 0, 2, main_coords, 4);
+line20:=get_line(h, 2, 0, main_coords, 4);
+line30:=get_line(h, 3, 0, main_coords, 4);
+linem30:=get_line(h, -3, 0, main_coords, 4);
+linem20:=get_line(h, -2, 0, main_coords, 4);
+hc := h_from_z(F_coupl, zxp, 1, [main_coords]);
+
+
