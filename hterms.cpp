@@ -28,9 +28,9 @@ gen Hijkl::to_gen(const RdtIndex &term, char id) {
 
 IMPL_GIAC_UNARY(h_from_z, 4, v[0], v[1], v[2], v[3])
 gen h_from_z(const gen &F, const gen &z, const gen& order, const gen& coords, const context* ct) {
-    std::cout << "calculating h from z\n"
-        << "F = " << F << "\n"
-        << "z = " << z << "\n";
+    //log << "calculating h from z\n"
+    //    << "F = " << F << "\n"
+    //    << "z = " << z << "\n";
   auto h = gen(z);
   auto brack = gen(z);
   for (int index = 0; index < order; index++) {
@@ -38,7 +38,7 @@ gen h_from_z(const gen &F, const gen &z, const gen& order, const gen& coords, co
     h = h + brack;
   }
 
-    std::cout << "h = " << h << endl;
+    //log << "h = " << h << endl;
   return h;
 }
 
@@ -70,7 +70,7 @@ gen get_2nd_order_terms(const vector<RdtIndex> &first_order_terms) {
       if (j + k > 0) {
 
         auto term = get_coord_term(H2, j, k, 0, 0, &CT);
-        std::cout << "H_" << j << k << "00 = " << term << endl;
+        //log << "H_" << j << k << "00 = " << term << endl;
       }
   return H2;
 }

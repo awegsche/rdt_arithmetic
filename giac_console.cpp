@@ -1,11 +1,11 @@
 #include <sstream>
 #include "giac_console.h"
+
 #include "giac_helper.h"
 
 const string LOG{"\33[33m[giac]\33[0m "};
 
-GiacConsole::GiacConsole() 
-{
+GiacConsole::GiacConsole()  {
 }
 
 void GiacConsole::assign(const char* name, const gen& g) {

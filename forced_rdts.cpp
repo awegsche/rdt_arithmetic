@@ -23,6 +23,7 @@ gen get_line(const gen& h, const gen& nx, const gen& ny, const gen& coords, cons
             for (int l = 0; l < max_; l++)
                 for (int m = 0; m < max_; m++)
                     if (j - k == nx.to_int() && l - m == ny.to_int()) {
+                        //logger->info("get_line", "%d %d %d %d", j, k, l ,m);
                         auto nz_coeff = _coeff(makesequence(h, coordinates[0], j), ct);
                         nz_coeff = _coeff(makesequence(nz_coeff, coordinates[1], k), ct);
                         nz_coeff = _coeff(makesequence(nz_coeff, coordinates[2], l), ct);

@@ -13,6 +13,7 @@ class GiacConsole {
     vector<string> _history;
     vector<string> _answers;
     char _inputbuf[GiacBufSize] = "";
+    bool _scroll_to_bottom = false;
     string _name;
 
 public:

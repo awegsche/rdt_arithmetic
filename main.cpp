@@ -1,5 +1,4 @@
-#include "common.h"
-#include "giac_helper.h"
+//#include "giac_helper.h"
 #include <iostream>
 #include <stdio.h>
 #include <vector>
@@ -7,8 +6,7 @@
 
 #include "giac_console.h"
 #include "brackets.h"
-#include "giac_setup.h"
-#include "hterms.h"
+//#include "hterms.h"
 #include "forced_rdts.h"
 
 
@@ -24,6 +22,7 @@ char input_buf[INPUT_SIZE];
 GiacConsole* gc = nullptr;
 
 void MainLoop() {
+
     int count = 0;
     while(true) {
         std::cout << "[in  " << count << "] ";
@@ -39,6 +38,12 @@ void MainLoop() {
 }
 
 int main(int argc, char **argv) {
+    std::cout<<"hello"<<std::endl;
+    #ifndef NDEBUG
+    std::cout << "debug" << std::endl;
+    #else
+    std::cout << "release" << std::endl;
+    #endif
     gc = new GiacConsole;
 
     if (argc > 1) {
