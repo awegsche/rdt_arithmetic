@@ -26,15 +26,33 @@ gen Hijkl::to_gen(const RdtIndex &term, char id) {
                    &CT);
 }
 
-IMPL_GIAC_UNARY(h_from_z, 4, v[0], v[1], v[2], v[3])
-gen h_from_z(const gen &F, const gen &z, const gen& order, const gen& coords, const context* ct) {
+gen _h_from_z(const gen& args, const context* ct) {
+    if (args.type != _VECT) 
+    {
+        std::cout << "wrong number of args" << std::endl;
+        return gensizeerr(ct);
+    }
+    vecteur& v = *args._VECTptr;
+    if (v.size() == 4)
+        return h_from_z(v[0], v[1], v[2], v[3], COMM_RES, ct);
+    else if (v.size() == 5)
+        return h_from_z(v[0], v[1], v[2], v[3], v[4], ct);
+    else 
+        return gensizeerr("wrong number of arguments");
+}
+const std::string _h_from_z_s("h_from_z"); 
+static define_unary_function_eval (__h_from_z, &_h_from_z, _h_from_z_s);
+define_unary_function_ptr5(at_h_from_z, alias_at_h_from_z, &__h_from_z, 0, true);
+
+gen h_from_z(const gen &F, const gen &z, const gen& order, const gen& coords, const gen& commutators,
+    const context* ct) {
     //log << "calculating h from z\n"
     //    << "F = " << F << "\n"
     //    << "z = " << z << "\n";
   auto h = gen(z);
   auto brack = gen(z);
   for (int index = 0; index < order; index++) {
-    brack = _simplify(br_general(F, brack, coords, ct), ct);
+    brack = _simplify(cost_bracket(F, brack, coords, commutators, ct), ct);
     h = h + brack;
   }
 

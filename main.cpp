@@ -37,21 +37,32 @@ void MainLoop() {
 
 }
 
+std::istream& readline(std::istream &file, std::string &line) {
+    bool comment = true;
+    while (comment && std::getline(file, line)) {
+        if (line[0] != '/')
+            comment = false;
+    }
+    return file;
+}
+
 int main(int argc, char **argv) {
-    std::cout<<"hello"<<std::endl;
-    #ifndef NDEBUG
-    std::cout << "debug" << std::endl;
-    #else
-    std::cout << "release" << std::endl;
-    #endif
     gc = new GiacConsole;
 
     if (argc > 1) {
         std::ifstream file(argv[1]);
         std::string line;
         char* bufptr = giac_context_buf;
-        while(std::getline(file, line)) {
+        while(readline(file, line)) {
             //std::cout << "file: " << line << std::endl;
+            while(line.back() == '\\')
+            {
+                line.pop_back();
+                std::string nextline;
+                readline(file,line);
+                line += nextline; 
+            }
+
             std::cout << "[file: ] " << gc->evaluate(line.c_str()) << "\n";
             memcpy(bufptr, line.c_str(), line.size());
             bufptr += line.size();
@@ -64,8 +75,10 @@ int main(int argc, char **argv) {
     }
 
     MainLoop();
+    /*
     std::ofstream ofile(argv[1], std::ios::trunc);
     ofile << giac_context_buf;
     ofile.close();
+    */
     delete gc;
 }

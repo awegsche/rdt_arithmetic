@@ -17,7 +17,7 @@ add_executable(rdt_giac
     forced_rdts.cpp
 
 )
-set_target_properties(rdt_giac PROPERTIES CXX_STANDARD 17)
+set_target_properties(rdt_giac PROPERTIES CXX_STANDARD 20)
 target_include_directories(rdt_giac PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(rdt_giac
     giac

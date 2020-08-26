@@ -1,5 +1,7 @@
-main_coords := [zxp,zxm,zyp,zym];
+main_coords := [zxp,zxm,zyp,zym];  // for convenience define the  coordinates
 F_coupl := f1010*zxp*zyp + f1001*zxp*xym + f0101*zxm*zym + f0110*zxm*zyp;
-hxp := h_from_z(F_coupl, zxp, 1, [main_coords]);
+// calculate h from zeta
+hxp := h_from_z(F_coupl, zxp, 1, main_coords);
+// calculate main and tune line
 line10 := get_line(hxp, 1, 0, main_coords, 1);
 line01 := get_line(hxp, 0, 1, main_coords, 1);

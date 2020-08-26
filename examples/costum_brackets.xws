@@ -1,0 +1,18 @@
+main_coords := [zxp,zxm,zyp,zym];
+comm_list := def_comms(main_coords, [[zxp,zxm,-2*i], [zxm,zxp,2*i], [zyp,zym,-2*i],[zym,zyp,2*i]]);
+forced_coords := [hxp,hxm,hyp,hym,gxpp,gxmp,gxmm,gxpm,gypp,gymp,gymm,gypm];
+forced_commutators := def_comms(forced_coords, \
+    [\
+        [hxp,hxm, -2*i],\
+        [hxm,hxp, 2*i],\
+        [hym,hyp, 2*i],\
+        [hyp,hym, -2*i]\
+    ]);
+zxp_ac : = hxp - gxpp + gxmp;
+zxm_ac : = hxm - gxpm + gxmm;
+zyp_ac : = hyp - gypp + gymp;
+zym_ac : = hym - gypm + gymm;
+F_coupl := f1010*zxp_ac*zyp_ac + f1001*zxp_ac*xym_ac + f0101*zxm_ac*zym_ac + f0110*zxm_ac*zyp_ac;
+hxp := h_from_z(F_coupl, zxp_ac, 1, main_coords, comm_list);
+line10 := get_line(hxp, 1, 0, main_coords, 1);
+line01 := get_line(hxp, 0, 1, main_coords, 1);

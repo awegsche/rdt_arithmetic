@@ -30,6 +30,8 @@ inline const gen BETY("beta_y", &CT);
 inline const gen SBETX("sqrt(beta_x)", &CT);
 inline const gen SBETY("sqrt(beta_y)", &CT);
 
+inline const gen COMM_RES("[0,-2*i,0,0,2*i,0,0,0,0,0,0,-2*i,0,0,2*i,0]", &CT);
+
 #define GIAC_UNARY(name, ...) \
     gen name(__VA_ARGS__, const context* ct); \
     gen _##name(const gen& args, const context* ct); \

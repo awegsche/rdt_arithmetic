@@ -51,7 +51,7 @@ gen hamiltonian(const vector<RdtIndex> &terms, char id) {
 GIAC_UNARY(hamil, const gen &terms, const gen& id)
 
 //gen h_from_z(const gen &F, const gen &z, int order);
-GIAC_UNARY(h_from_z, const gen& F, const gen& z, const gen& order, const gen& coords)
+GIAC_UNARY(h_from_z, const gen& F, const gen& z, const gen& order, const gen& coords, const gen& commutators)
 
 //gen get_coord_term(const gen &H, int j, int k, int l, int m);
 GIAC_UNARY(get_coord_term, const gen& H, const gen& j, const gen& k, const gen& l, const gen& m)
